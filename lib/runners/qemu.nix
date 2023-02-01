@@ -93,7 +93,7 @@ in {
       "-device" "virtio-rng-${devType}"
       "-drive" "id=root,format=raw,media=cdrom,file=${bootDisk},if=none,aio=io_uring"
       "-device" "virtio-blk-${devType},drive=root"
-      "-kernel" "${kernel.dev}/vmlinux"
+      "-kernel" "${kernel.out}/Image"
       # hvc1 precedes hvc0 so that nixos starts serial-agetty@ on both
       # without further config
       "-append" "console=hvc1 console=hvc0 reboot=t panic=-1 ${toString microvmConfig.kernelParams}"
