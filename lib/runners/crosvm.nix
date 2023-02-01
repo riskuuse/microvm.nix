@@ -65,7 +65,7 @@ in {
         usb = throw "USB passthrough is not supported on crosvm";
       }.${bus}) devices
       ++
-      [ "${kernel.dev}/vmlinux" ]
+      [ "${kernel.out}/${pkgs.stdenv.hostPlatform.linux-kernel.target}" ]
     );
 
   canShutdown = socket != null;
