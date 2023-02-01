@@ -176,6 +176,7 @@ in
             echo $path > /sys/bus/pci/drivers_probe
             popd
           done
+          chown -Rv microvm /dev/vfio
         '';
       };
 
