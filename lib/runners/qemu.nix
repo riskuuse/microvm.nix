@@ -76,9 +76,11 @@ in {
       "-name" hostName
       "-M" machine
       "-m" (toString (mem + balloonMem))
-      "-cpu" "host,+x2apic"
+      # "-cpu" "host,+x2apic"
+      "-cpu" "host"
       "-smp" (toString vcpu)
-      "-enable-kvm"
+      # "-enable-kvm"
+      "-machine" "virt,accel=kvm"
       "-nodefaults" "-no-user-config"
       "-nographic"
       # qemu just hangs after shutdown, allow to exit by rebooting
@@ -89,7 +91,7 @@ in {
       "-device" "virtconsole,chardev=con0"
       "-chardev" "stdio,mux=on,id=con1,signal=off"
       "-device" "virtconsole,chardev=con1"
-      "-device" "i8042"
+      # "-device" "i8042"
       "-device" "virtio-rng-${devType}"
       "-drive" "id=root,format=raw,media=cdrom,file=${bootDisk},if=none,aio=io_uring"
       "-device" "virtio-blk-${devType},drive=root"
