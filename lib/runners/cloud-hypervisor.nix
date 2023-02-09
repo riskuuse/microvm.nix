@@ -27,7 +27,7 @@ in {
         "--watchdog"
         "--console" "tty"
         "--serial" "pty"
-        "--kernel" "${kernel.out}/Image"
+        "--kernel" "${kernel.dev}/vmlinux"
         "--cmdline" "console=hvc0 console=ttyS0 reboot=t panic=-1 ${toString microvmConfig.kernelParams}"
         "--seccomp" "true"
       ]
