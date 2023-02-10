@@ -17,7 +17,7 @@ in {
         "--firecracker-binary=${pkgs.firecracker}/bin/firecracker"
         "-m" (toString mem)
         "-c" (toString vcpu)
-        "--kernel=${kernel.dev}/vmlinux"
+        "--kernel=${kernel.out}/bzImage"
         "--kernel-opts=console=ttyS0 noapic reboot=k panic=1 pci=off nomodules ${toString microvmConfig.kernelParams}"
         "--root-drive=${bootDisk}:ro"
       ]
