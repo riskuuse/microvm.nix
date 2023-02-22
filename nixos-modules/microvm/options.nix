@@ -18,7 +18,7 @@ in
 
     hypervisor = mkOption {
       type = types.enum self-lib.hypervisors;
-      default = "qemu";
+      default = "crosvm";
       description = ''
         Which hypervisor to use for this MicroVM
 
