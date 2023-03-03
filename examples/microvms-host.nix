@@ -62,14 +62,14 @@ nixpkgs.lib.nixosSystem {
 
       systemd.network = {
         enable = true;
-        netdevs.virbr0.netdevConfig = {
+        netdevs.virbr1.netdevConfig = {
           Kind = "bridge";
-          Name = "virbr0";
+          Name = "virbr1";
         };
-        networks.virbr0 = {
-          matchConfig.Name = "virbr0";
+        networks.virbr1 = {
+          matchConfig.Name = "virbr1";
           # Hand out IP addresses to MicroVMs.
-          # Use `networkctl status virbr0` to see leases.
+          # Use `networkctl status virbr1` to see leases.
           networkConfig = {
             DHCPServer = true;
             IPv6SendRA = true;
@@ -85,7 +85,7 @@ nixpkgs.lib.nixosSystem {
         };
         networks.microvm-eth0 = {
           matchConfig.Name = "vm-*";
-          networkConfig.Bridge = "virbr0";
+          networkConfig.Bridge = "virbr1";
         };
       };
       # Allow DHCP server
@@ -94,7 +94,7 @@ nixpkgs.lib.nixosSystem {
       networking.nat = {
         enable = true;
         enableIPv6 = true;
-        internalInterfaces = [ "virbr0" ];
+        internalInterfaces = [ "virbr1" ];
       };
     })
   ];
